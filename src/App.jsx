@@ -233,7 +233,7 @@ export default function SmartEventDashboard() {
     setScores(updatedScores);
     setJudgeFeedback('');
     triggerSave(participants, teams, broadcasts, updatedScores);
-    confetti({ particleCount: 80, spread: 70, colors: ['#6366F1', '#10B981'], origin: { y: 0.8 } });
+    confetti({ particleCount: 80, spread: 70, colors: ['#7C3AED', '#10B981'], origin: { y: 0.8 } });
   };
 
   // 6. Organizer announcement broadcast
@@ -310,24 +310,24 @@ export default function SmartEventDashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0B0F17] text-slate-200 font-sans p-4 md:p-6 select-none">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-700 font-body p-4 md:p-6 select-none">
       
       {/* Top Bar: Logo | Event Name & Persona Control Dropdown */}
-      <header className="max-w-7xl mx-auto bg-[#121824] border border-white/5 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl mb-6">
+      <header className="max-w-7xl mx-auto bg-white border border-slate-200/80 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm shadow-slate-100 mb-6">
         
         {/* Logo and Live Status */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#6366F1] via-[#7000FF] to-[#00F2FE] flex items-center justify-center shadow-lg shadow-indigo-500/25">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#7C3AED] via-[#3B82F6] to-[#06B6D4] flex items-center justify-center shadow-md shadow-purple-500/20">
             <Zap className="w-5 h-5 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-base tracking-tight text-white font-heading">EventPulse Hub</span>
-              <span className="bg-[#6366F1]/10 text-[#818cf8] border border-[#6366F1]/30 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                Active Monitor
+              <span className="font-extrabold text-base tracking-tight text-slate-900 font-heading">SEMP Hub</span>
+              <span className="bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Live Console
               </span>
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5">Smart Event Management Platform</p>
+            <p className="text-[10px] text-slate-500 mt-0.5">Smart Event Management Platform</p>
           </div>
         </div>
 
@@ -335,7 +335,7 @@ export default function SmartEventDashboard() {
         <div className="flex flex-wrap items-center gap-2.5">
           
           {/* View Persona selection */}
-          <div className="flex bg-[#0B0F17] border border-white/5 p-1 rounded-xl text-xs">
+          <div className="flex bg-slate-100 border border-slate-200/60 p-1 rounded-xl text-xs">
             {['participant', 'judge', 'organizer'].map((r) => (
               <button
                 key={r}
@@ -347,8 +347,8 @@ export default function SmartEventDashboard() {
                 }}
                 className={`px-3 py-1.5 rounded-lg font-semibold uppercase text-[10px] tracking-wider transition-all ${
                   role === r
-                    ? 'bg-[#6366F1] text-white shadow'
-                    : 'text-gray-400 hover:text-[#818cf8]'
+                    ? 'bg-[#7C3AED] text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
                 {r} View
@@ -358,8 +358,8 @@ export default function SmartEventDashboard() {
 
           {/* Persona selector select dropdown */}
           {role === 'participant' ? (
-            <div className="flex items-center gap-1.5 bg-[#0B0F17] border border-white/5 rounded-xl px-2.5 py-1.5 text-[11px]">
-              <User className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1.5 text-[11px]">
+              <User className="w-3.5 h-3.5 text-[#7C3AED]" />
               <select
                 value={activePartId}
                 onChange={(e) => {
@@ -374,25 +374,25 @@ export default function SmartEventDashboard() {
                     setDemoInput('');
                   }
                 }}
-                className="bg-transparent border-none outline-none font-semibold text-gray-200 cursor-pointer"
+                className="bg-transparent border-none outline-none font-semibold text-slate-700 cursor-pointer"
               >
                 {participants.map(p => (
-                  <option key={p.id} value={p.id} className="bg-[#0b0f17] text-white">
+                  <option key={p.id} value={p.id} className="bg-white text-slate-800">
                     {p.name} ({p.id})
                   </option>
                 ))}
               </select>
             </div>
           ) : role === 'judge' ? (
-            <div className="flex items-center gap-1.5 bg-[#0B0F17] border border-white/5 rounded-xl px-2.5 py-1.5 text-[11px]">
-              <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+            <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1.5 text-[11px]">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#3B82F6]" />
               <select
                 value={activeJudgeId}
                 onChange={(e) => setActiveJudgeId(e.target.value)}
-                className="bg-transparent border-none outline-none font-semibold text-gray-200 cursor-pointer"
+                className="bg-transparent border-none outline-none font-semibold text-slate-700 cursor-pointer"
               >
-                <option value="JUDGE-01" className="bg-[#0b0f17]">Judge: Dr. Thorne</option>
-                <option value="JUDGE-02" className="bg-[#0b0f17]">Judge: Maya Lin</option>
+                <option value="JUDGE-01" className="bg-white text-slate-800">Judge: Dr. Thorne</option>
+                <option value="JUDGE-02" className="bg-white text-slate-800">Judge: Maya Lin</option>
               </select>
             </div>
           ) : null}
@@ -418,8 +418,8 @@ export default function SmartEventDashboard() {
               onClick={() => setCurrentTab(tab.id)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold border transition-all ${
                 isActive 
-                  ? 'bg-[#6366F1]/10 text-[#818cf8] border-[#6366F1]/30 shadow-md shadow-[#6366F1]/5' 
-                  : 'text-gray-400 hover:text-white border-transparent hover:bg-white/5'
+                  ? 'bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/30 shadow-sm shadow-[#7C3AED]/5' 
+                  : 'text-slate-500 hover:text-slate-800 border-transparent hover:bg-slate-100'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -440,23 +440,23 @@ export default function SmartEventDashboard() {
             <div className="space-y-6">
               
               {/* QR Pass Card (Participant View) */}
-              <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#6366F1]/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden shadow-sm">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#7C3AED]/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Cyber-Pass QR Code</h3>
+                  <h3 className="text-xs font-bold text-[#7C3AED] uppercase tracking-wider font-heading">SEMP Badge QR Pass</h3>
                   {activeParticipant.checkInStatus ? (
-                    <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                    <span className="bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
                       Clearance Granted
                     </span>
                   ) : (
-                    <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">
+                    <span className="bg-amber-500/10 text-amber-600 border border-amber-500/20 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">
                       Pending Admissions
                     </span>
                   )}
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
-                  <div className="bg-white p-3 rounded-xl border border-[#6366F1]/30 shadow-md">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
                     <QRCodeSVG 
                       value={activeParticipant.qrValue} 
                       size={120} 
@@ -464,23 +464,23 @@ export default function SmartEventDashboard() {
                     />
                   </div>
                   <div className="space-y-2 text-center sm:text-left">
-                    <h4 className="text-sm font-bold text-white leading-tight">{activeParticipant.name}</h4>
-                    <p className="text-[11px] text-[#818cf8] font-medium">{activeParticipant.role}</p>
-                    <p className="text-[10px] text-gray-500">ID token: <strong className="font-mono text-gray-300">{activeParticipant.id}</strong></p>
-                    <p className="text-[10px] text-gray-400">Team: <strong className="text-white">{activePartTeam ? activePartTeam.name : 'Solo Hacker'}</strong></p>
+                    <h4 className="text-base font-bold text-slate-900 leading-tight font-heading">{activeParticipant.name}</h4>
+                    <p className="text-[11px] text-[#3B82F6] font-semibold uppercase tracking-wide">{activeParticipant.role}</p>
+                    <p className="text-[10px] text-slate-500">ID token: <strong className="font-mono text-slate-700">{activeParticipant.id}</strong></p>
+                    <p className="text-[10px] text-slate-600">Team: <strong className="text-slate-800">{activePartTeam ? activePartTeam.name : 'Solo Hacker'}</strong></p>
                   </div>
                 </div>
               </div>
 
               {/* QR scanner Simulator (Organizer View) */}
               {role === 'organizer' && (
-                <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 space-y-4">
-                  <h3 className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Admissions Verification Station</h3>
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <h3 className="text-xs font-bold text-emerald-600 uppercase tracking-wider font-heading">Admissions Verification Station</h3>
                   
-                  <div className="bg-[#0B0F17] p-4 rounded-xl border border-white/5 space-y-3">
+                  <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/60 space-y-3">
                     <div className="w-full h-24 border-2 border-dashed border-emerald-500/30 rounded-lg flex flex-col items-center justify-center p-3 text-center">
-                      <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest animate-pulse">Simulator Active</span>
-                      <p className="text-[10px] text-gray-500 mt-1">Select a pending hacker below to simulate QR pass scan</p>
+                      <span className="text-[9px] font-bold text-emerald-600 uppercase tracking-widest animate-pulse">Simulator Active</span>
+                      <p className="text-[10px] text-slate-500 mt-1">Select a pending hacker below to simulate QR pass scan</p>
                     </div>
 
                     <form onSubmit={(e) => { e.preventDefault(); handleCheckin(scanInput); setScanInput(''); }} className="flex gap-2">
@@ -489,9 +489,9 @@ export default function SmartEventDashboard() {
                         placeholder="Paste badge QR value or Participant ID..."
                         value={scanInput}
                         onChange={(e) => setScanInput(e.target.value)}
-                        className="flex-grow bg-[#05070f] border border-white/5 rounded-lg px-3 py-1.5 text-xs text-white outline-none focus:border-emerald-500 transition-all font-mono"
+                        className="flex-grow bg-[#F8FAFC] border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-800 outline-none focus:border-emerald-500 focus:bg-white transition-all font-mono"
                       />
-                      <button type="submit" className="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-gray-950 font-bold hover:bg-emerald-400 text-xs">
+                      <button type="submit" className="px-4 py-1.5 rounded-lg bg-emerald-500 text-white font-bold hover:bg-emerald-600 text-xs shadow-sm">
                         Verify
                       </button>
                     </form>
@@ -500,8 +500,8 @@ export default function SmartEventDashboard() {
                   {scanResult && (
                     <div className={`p-3 rounded-lg text-[10px] font-semibold flex justify-between items-center ${
                       scanResult.success 
-                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                        : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                        ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20' 
+                        : 'bg-rose-500/10 text-rose-600 border border-rose-500/20'
                     }`}>
                       <span>{scanResult.msg}</span>
                     </div>
@@ -509,19 +509,19 @@ export default function SmartEventDashboard() {
 
                   {/* Pending Checkins list */}
                   <div className="space-y-1.5">
-                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Pending Admissions Check-ins ({uncheckedList.length})</span>
+                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block font-heading">Pending Admissions Check-ins ({uncheckedList.length})</span>
                     <div className="space-y-1.5 max-h-36 overflow-y-auto pr-1">
                       {uncheckedList.map(p => (
                         <div
                           key={p.id}
                           onClick={() => handleCheckin(p.id)}
-                          className="flex justify-between items-center p-2.5 rounded-lg bg-slate-900 border border-white/5 hover:border-emerald-500/30 cursor-pointer text-[10px] transition-colors"
+                          className="flex justify-between items-center p-2.5 rounded-lg bg-slate-50/80 border border-slate-200/60 hover:border-emerald-500/30 cursor-pointer text-[10px] transition-colors"
                         >
                           <div>
-                            <span className="text-gray-200 font-semibold">{p.name}</span>
-                            <span className="text-gray-500 block text-[9px]">{p.role}</span>
+                            <span className="text-slate-800 font-semibold">{p.name}</span>
+                            <span className="text-slate-500 block text-[9px]">{p.role}</span>
                           </div>
-                          <span className="px-2 py-0.5 bg-slate-800 text-gray-400 border border-white/5 rounded text-[8px] uppercase tracking-wider font-mono">
+                          <span className="px-2 py-0.5 bg-white text-[#7C3AED] border border-slate-200 rounded text-[8px] uppercase tracking-wider font-mono shadow-sm">
                             Tap to Scan
                           </span>
                         </div>
@@ -539,15 +539,15 @@ export default function SmartEventDashboard() {
             <div className="space-y-6">
               
               {/* Filter panel */}
-              <div className="bg-[#121824] border border-white/5 rounded-2xl p-4 flex flex-col sm:flex-row gap-3 justify-between items-center text-xs">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row gap-3 justify-between items-center text-xs shadow-sm">
                 <div className="relative w-full sm:w-60">
-                  <Search className="w-4 h-4 text-gray-400 absolute left-2.5 top-2.5" />
+                  <Search className="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" />
                   <input
                     type="text"
                     placeholder="Search by name, stack, role..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 pl-8 pr-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                    className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 pl-8 pr-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                   />
                 </div>
 
@@ -558,8 +558,8 @@ export default function SmartEventDashboard() {
                       onClick={() => setSkillsFilter(s)}
                       className={`px-3 py-1.5 rounded-lg text-[9px] uppercase font-bold border transition-all ${
                         skillsFilter === s 
-                          ? 'bg-[#6366F1]/20 text-[#818cf8] border-[#6366F1]/30 shadow' 
-                          : 'bg-[#0B0F17] text-gray-400 border-white/5 hover:text-white'
+                          ? 'bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/20 shadow-sm' 
+                          : 'bg-[#F8FAFC] text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-slate-100'
                       }`}
                     >
                       {s}
@@ -579,19 +579,19 @@ export default function SmartEventDashboard() {
                   .map(part => {
                     const partTeam = teams.find(t => t.id === part.teamId);
                     return (
-                      <div key={part.id} className="bg-[#121824] border border-white/5 rounded-2xl p-5 flex flex-col justify-between h-40">
+                      <div key={part.id} className="bg-white border border-slate-200/80 rounded-2xl p-5 flex flex-col justify-between h-40 shadow-sm">
                         <div>
                           <div className="flex justify-between items-start gap-3">
                             <div>
-                              <h4 className="text-xs font-bold text-white">{part.name}</h4>
-                              <p className="text-[10px] text-[#818cf8] font-medium">{part.role}</p>
+                              <h4 className="text-xs font-bold text-slate-900 font-heading">{part.name}</h4>
+                              <p className="text-[10px] text-[#3B82F6] font-medium">{part.role}</p>
                             </div>
                             {part.lookingForTeam ? (
-                              <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wider">
+                              <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 uppercase tracking-wider">
                                 Hiring Solo
                               </span>
                             ) : (
-                              <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-slate-800 text-gray-400 border border-white/5 truncate max-w-[80px]">
+                              <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-slate-100 text-slate-500 border border-slate-200/60 truncate max-w-[80px]">
                                 {partTeam ? partTeam.name : 'In Team'}
                               </span>
                             )}
@@ -599,17 +599,17 @@ export default function SmartEventDashboard() {
                           
                           <div className="flex flex-wrap gap-1 mt-3">
                             {part.skills.map(s => (
-                              <span key={s} className="bg-[#0B0F17] border border-white/5 text-[9px] px-2 py-0.5 rounded font-mono">
+                              <span key={s} className="bg-[#F8FAFC] border border-slate-200 text-[9px] px-2 py-0.5 rounded font-mono text-slate-600">
                                 {s}
                               </span>
                             ))}
                           </div>
                         </div>
 
-                        <div className="pt-3 border-t border-white/5 flex justify-between items-center text-[9px] text-gray-500">
-                          <span>Node token: <strong className="font-mono text-gray-400">{part.id}</strong></span>
+                        <div className="pt-3 border-t border-slate-100 flex justify-between items-center text-[9px] text-slate-500">
+                          <span>Node token: <strong className="font-mono text-slate-700">{part.id}</strong></span>
                           {part.id === activeParticipant.id && (
-                            <span className="text-[#818cf8] font-bold uppercase tracking-wider">You</span>
+                            <span className="text-[#7C3AED] font-bold uppercase tracking-wider">You</span>
                           )}
                         </div>
                       </div>
@@ -619,29 +619,29 @@ export default function SmartEventDashboard() {
 
               {/* Assemble team panel (Participant view without team) */}
               {!activePartTeam && (
-                <div className="bg-[#121824] border border-white/5 rounded-2xl p-6">
-                  <h3 className="text-sm font-bold text-white mb-1">Assemble Hack Squad</h3>
-                  <p className="text-gray-400 mb-4">Complete fields below to create a new team project card.</p>
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-slate-900 mb-1 font-heading">Assemble Hack Squad</h3>
+                  <p className="text-slate-500 mb-4">Complete fields below to create a new team project card.</p>
                   
                   <form onSubmit={handleAssembleSquad} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Team Title</label>
+                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Team Title</label>
                         <input
                           type="text"
                           placeholder="e.g. Brainiacs AI"
                           value={teamNameInput}
                           onChange={(e) => setTeamNameInput(e.target.value)}
-                          className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                          className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                           required
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Track Track</label>
+                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Track Track</label>
                         <select
                           value={teamTrackInput}
                           onChange={(e) => setTeamTrackInput(e.target.value)}
-                          className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1] cursor-pointer"
+                          className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white cursor-pointer"
                         >
                           <option value="AI / ML">AI / ML Track</option>
                           <option value="Open Innovation">Open Innovation</option>
@@ -650,16 +650,16 @@ export default function SmartEventDashboard() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Tagline</label>
+                      <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Tagline</label>
                       <input
                         type="text"
                         placeholder="e.g. Building carbon credits parsing maps"
                         value={teamTaglineInput}
                         onChange={(e) => setTeamTaglineInput(e.target.value)}
-                        className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                        className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                       />
                     </div>
-                    <button type="submit" className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs">
+                    <button type="submit" className="w-full py-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs shadow-sm">
                       Form Team Profile
                     </button>
                   </form>
@@ -676,55 +676,55 @@ export default function SmartEventDashboard() {
               {/* Participant view - Deliverables form & single-branch validator */}
               {role === 'participant' && (
                 <>
-                  <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 space-y-4">
-                    <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                      <Send className="w-4 h-4 text-emerald-400" /> Deliverables submission console
+                  <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm">
+                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 font-heading">
+                      <Send className="w-4 h-4 text-emerald-500" /> Deliverables submission console
                     </h3>
 
                     {activePartTeam ? (
                       <form onSubmit={handleDeliverablesSubmit} className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">GitHub URL</label>
+                            <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">GitHub URL</label>
                             <input
                               type="url"
                               placeholder="https://github.com/user/project"
                               value={repoInput}
                               onChange={(e) => setRepoInput(e.target.value)}
-                              className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1] font-mono"
+                              className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white font-mono"
                               required
                             />
                           </div>
                           <div>
-                            <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Video Demo Link</label>
+                            <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Video Demo Link</label>
                             <input
                               type="url"
                               placeholder="https://youtube.com/watch?v=pitch"
                               value={demoInput}
                               onChange={(e) => setDemoInput(e.target.value)}
-                              className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1] font-mono"
+                              className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white font-mono"
                               required
                             />
                           </div>
                         </div>
 
-                        <button type="submit" className="w-full py-2.5 rounded-xl bg-emerald-500 text-gray-950 font-bold text-xs hover:bg-emerald-400 transition-all">
+                        <button type="submit" className="w-full py-2.5 rounded-xl bg-emerald-500 text-white font-bold text-xs hover:bg-emerald-600 transition-all shadow-sm">
                           Lock Deliverables & Submit Project
                         </button>
                       </form>
                     ) : (
-                      <div className="bg-amber-500/10 text-amber-400 border border-amber-500/20 p-4 rounded-xl">
+                      <div className="bg-amber-500/10 text-amber-600 border border-amber-500/20 p-4 rounded-xl text-xs">
                         ⚠️ Assemble or join a team first in the Team Finder tab.
                       </div>
                     )}
                   </div>
 
                   {/* Single branch Validator */}
-                  <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 space-y-4">
-                    <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-indigo-400" /> Single-Branch &amp; Payload Validator
+                  <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm">
+                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 font-heading">
+                      <Terminal className="w-4 h-4 text-[#7C3AED]" /> Single-Branch &amp; Payload Validator
                     </h3>
-                    <p className="text-gray-400">
+                    <p className="text-slate-500 text-xs">
                       Test repository branch metadata directly before final commit.
                     </p>
 
@@ -734,18 +734,18 @@ export default function SmartEventDashboard() {
                         placeholder="https://github.com/user/project"
                         value={repoCheckUrl}
                         onChange={(e) => setRepoCheckUrl(e.target.value)}
-                        className="flex-grow bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1] font-mono"
+                        className="flex-grow bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white font-mono"
                         required
                       />
-                      <button type="submit" disabled={terminalLoading} className="px-4 py-2 rounded-xl bg-[#6366F1] hover:bg-[#6366F1]/90 text-white font-bold text-xs shrink-0 transition-all">
+                      <button type="submit" disabled={terminalLoading} className="px-4 py-2 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs shrink-0 transition-all shadow-sm">
                         {terminalLoading ? 'Running...' : 'Run Test'}
                       </button>
                     </form>
 
                     {terminalLogs.length > 0 && (
-                      <div className="bg-[#0B0F17] p-3 rounded-xl border border-white/5 font-mono text-[9px] text-gray-400 space-y-1">
+                      <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl font-mono text-[9px] text-slate-500 space-y-1">
                         {terminalLogs.map((log, idx) => (
-                          <div key={idx} className={idx === terminalLogs.length - 1 ? 'text-indigo-400' : ''}>
+                          <div key={idx} className={idx === terminalLogs.length - 1 ? 'text-[#7C3AED] font-semibold' : ''}>
                             {log}
                           </div>
                         ))}
@@ -753,8 +753,8 @@ export default function SmartEventDashboard() {
                     )}
 
                     {terminalResult && (
-                      <div className="bg-emerald-950/20 border border-emerald-500/30 p-3.5 rounded-xl text-[10px] text-gray-300">
-                        <strong className="text-emerald-400 block mb-1">✓ Compliance Check Success</strong>
+                      <div className="bg-emerald-50 border border-emerald-500/30 p-3.5 rounded-xl text-[10px] text-slate-700">
+                        <strong className="text-emerald-600 block mb-1">✓ Compliance Check Success</strong>
                         Branches: {terminalResult.branches} | Size: {terminalResult.sizeFriendly} | status: {terminalResult.msg}
                       </div>
                     )}
@@ -764,18 +764,18 @@ export default function SmartEventDashboard() {
 
               {/* Judge view - Rubric sliders & assigned checklist */}
               {role === 'judge' && (
-                <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 space-y-6">
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-6 shadow-sm">
                   
-                  <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                  <div className="flex justify-between items-center pb-3 border-b border-slate-100">
                     <div>
-                      <span className="text-[9px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded uppercase font-bold">
+                      <span className="text-[9px] bg-purple-500/10 text-purple-600 border border-purple-500/20 px-2 py-0.5 rounded uppercase font-bold">
                         Scoring Workspace
                       </span>
-                      <h3 className="text-sm font-extrabold text-white mt-1 font-heading">
+                      <h3 className="text-sm font-extrabold text-slate-900 mt-1 font-heading">
                         Holographic Judging Portal
                       </h3>
                     </div>
-                    <div className="bg-[#0B0F17] border border-white/5 rounded-xl px-2.5 py-1 text-[10px]">
+                    <div className="bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1 text-[10px]">
                       Target: <select 
                         value={judgeSelectedTeam} 
                         onChange={(e) => {
@@ -789,10 +789,10 @@ export default function SmartEventDashboard() {
                             setJudgeFeedback('');
                           }
                         }}
-                        className="bg-transparent border-none outline-none font-bold text-[#818cf8] cursor-pointer"
+                        className="bg-transparent border-none outline-none font-bold text-[#7C3AED] cursor-pointer"
                       >
                         {teams.map(t => (
-                          <option key={t.id} value={t.id} className="bg-[#0b0f17]">{t.name} ({t.id})</option>
+                          <option key={t.id} value={t.id} className="bg-white text-slate-800">{t.name} ({t.id})</option>
                         ))}
                       </select>
                     </div>
@@ -805,10 +805,10 @@ export default function SmartEventDashboard() {
                       {RUBRIC_CRITERIA.map(crit => {
                         const scoreVal = judgeRubrics[crit.id] || 0;
                         return (
-                          <div key={crit.id} className="bg-[#0B0F17] p-4 rounded-xl border border-white/5 space-y-2">
+                          <div key={crit.id} className="bg-slate-50 p-4 rounded-xl border border-slate-200/60 space-y-2">
                             <div className="flex justify-between items-center text-[10px]">
-                              <span className="font-bold text-gray-200">{crit.name}</span>
-                              <span className="font-mono font-bold text-indigo-400">{scoreVal} / 10</span>
+                              <span className="font-bold text-slate-700">{crit.name}</span>
+                              <span className="font-mono font-bold text-[#7C3AED]">{scoreVal} / 10</span>
                             </div>
                             <input
                               type="range"
@@ -817,7 +817,7 @@ export default function SmartEventDashboard() {
                               step="1"
                               value={scoreVal}
                               onChange={(e) => setJudgeRubrics({ ...judgeRubrics, [crit.id]: parseInt(e.target.value) })}
-                              className="w-full accent-indigo-500 cursor-pointer h-1.5 bg-slate-950 rounded"
+                              className="w-full accent-[#7C3AED] cursor-pointer h-1.5 bg-slate-200 rounded"
                             />
                           </div>
                         );
@@ -825,23 +825,23 @@ export default function SmartEventDashboard() {
                     </div>
 
                     {/* Live preview weighted calculation */}
-                    <div className="bg-[#6366F1]/10 border border-[#6366F1]/30 p-3.5 rounded-xl flex justify-between items-center text-[11px]">
-                      <span className="text-indigo-300 font-semibold">Live Score Aggregate (Equal 25% weight):</span>
-                      <strong className="text-emerald-400 font-mono text-base">{calculatedWeightedScore} / 10.0</strong>
+                    <div className="bg-[#7C3AED]/5 border border-[#7C3AED]/20 p-3.5 rounded-xl flex justify-between items-center text-[11px]">
+                      <span className="text-slate-600 font-semibold">Live Score Aggregate (Equal 25% weight):</span>
+                      <strong className="text-emerald-600 font-mono text-base">{calculatedWeightedScore} / 10.0</strong>
                     </div>
 
                     <div>
-                      <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Qualitative Feedback</label>
+                      <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Qualitative Feedback</label>
                       <textarea
                         placeholder="Type construct remarks for final telemetry report..."
                         value={judgeFeedback}
                         onChange={(e) => setJudgeFeedback(e.target.value)}
-                        className="w-full bg-[#0B0F17] border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                        className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl p-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                         rows={3}
                       />
                     </div>
 
-                    <button type="submit" className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold text-xs hover:opacity-90">
+                    <button type="submit" className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-[#7C3AED] text-white font-bold text-xs hover:opacity-90 shadow-sm">
                       Commit Rubric Scores
                     </button>
                   </form>
@@ -860,37 +860,37 @@ export default function SmartEventDashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 items-end">
                   
                   {/* Silver */}
-                  <div className="bg-[#121824] border border-white/5 p-5 rounded-2xl text-center border-t-4 border-t-gray-400 mt-4">
+                  <div className="bg-white border border-slate-200/80 p-5 rounded-2xl text-center border-t-4 border-t-slate-400 mt-4 shadow-sm">
                     <span className="text-xl block">🥈</span>
-                    <span className="text-[8px] bg-slate-800 border border-white/5 px-2 py-0.5 rounded text-gray-400 block w-fit mx-auto mb-1">
+                    <span className="text-[8px] bg-slate-100 border border-slate-200 px-2 py-0.5 rounded text-slate-500 block w-fit mx-auto mb-1 font-bold">
                       {leaderboardStandings[1].track}
                     </span>
-                    <h4 className="text-xs font-bold text-white mt-1.5">{leaderboardStandings[1].name}</h4>
-                    <p className="text-[10px] font-mono font-bold text-cyan-400 mt-2">
+                    <h4 className="text-xs font-bold text-slate-900 mt-1.5 font-heading">{leaderboardStandings[1].name}</h4>
+                    <p className="text-[10px] font-mono font-bold text-[#3B82F6] mt-2">
                       {leaderboardStandings[1].average.toFixed(2)} pts
                     </p>
                   </div>
 
                   {/* Gold */}
-                  <div className="bg-[#121824] border border-[#6366F1]/30 p-6 rounded-2xl text-center border-t-4 border-t-amber-400 bg-gradient-to-b from-[#6366F1]/5 to-slate-900/40 shadow-2xl">
+                  <div className="bg-white border border-[#7C3AED]/20 p-6 rounded-2xl text-center border-t-4 border-t-amber-400 bg-gradient-to-b from-[#7C3AED]/5 to-white shadow-md">
                     <span className="text-2xl block">👑</span>
-                    <span className="text-[8px] bg-[#6366F1]/10 border border-[#6366F1]/30 px-2 py-0.5 rounded text-[#818cf8] block w-fit mx-auto mb-1">
+                    <span className="text-[8px] bg-[#7C3AED]/10 border border-[#7C3AED]/20 px-2 py-0.5 rounded text-[#7C3AED] block w-fit mx-auto mb-1 font-bold">
                       {leaderboardStandings[0].track}
                     </span>
-                    <h4 className="text-sm font-extrabold text-white mt-1.5 leading-tight">{leaderboardStandings[0].name}</h4>
-                    <p className="text-xl font-mono font-bold text-amber-400 mt-2.5">
+                    <h4 className="text-sm font-extrabold text-slate-900 mt-1.5 leading-tight font-heading">{leaderboardStandings[0].name}</h4>
+                    <p className="text-xl font-mono font-bold text-amber-500 mt-2.5">
                       {leaderboardStandings[0].average.toFixed(2)} pts
                     </p>
                   </div>
 
                   {/* Bronze */}
-                  <div className="bg-[#121824] border border-white/5 p-5 rounded-2xl text-center border-t-4 border-t-amber-800 mt-4">
+                  <div className="bg-white border border-slate-200/80 p-5 rounded-2xl text-center border-t-4 border-t-amber-700 mt-4 shadow-sm">
                     <span className="text-xl block">🥉</span>
-                    <span className="text-[8px] bg-slate-800 border border-white/5 px-2 py-0.5 rounded text-gray-400 block w-fit mx-auto mb-1">
+                    <span className="text-[8px] bg-slate-100 border border-slate-200 px-2 py-0.5 rounded text-slate-500 block w-fit mx-auto mb-1 font-bold">
                       {leaderboardStandings[2].track}
                     </span>
-                    <h4 className="text-xs font-bold text-white mt-1.5">{leaderboardStandings[2].name}</h4>
-                    <p className="text-[10px] font-mono font-bold text-amber-500 mt-2">
+                    <h4 className="text-xs font-bold text-slate-900 mt-1.5 font-heading">{leaderboardStandings[2].name}</h4>
+                    <p className="text-[10px] font-mono font-bold text-amber-600 mt-2">
                       {leaderboardStandings[2].average.toFixed(2)} pts
                     </p>
                   </div>
@@ -899,11 +899,11 @@ export default function SmartEventDashboard() {
               )}
 
               {/* Ranks list */}
-              <div className="bg-[#121824] border border-white/5 rounded-2xl p-6">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
-                      <tr className="border-b border-white/5 text-gray-400 uppercase tracking-wider text-[9px]">
+                      <tr className="border-b border-slate-100 text-slate-400 uppercase tracking-wider text-[9px] font-bold">
                         <th className="py-3 px-3 text-center">Rank</th>
                         <th className="py-3 px-3">Team Project</th>
                         <th className="py-3 px-3">Track</th>
@@ -912,7 +912,7 @@ export default function SmartEventDashboard() {
                         <th className="py-3 px-3 text-right">Details</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5">
+                    <tbody className="divide-y divide-slate-100">
                       {leaderboardStandings.map((team, idx) => {
                         const rank = idx + 1;
                         const isExpanded = expandedTeamId === team.id;
@@ -920,35 +920,35 @@ export default function SmartEventDashboard() {
 
                         return (
                           <React.Fragment key={team.id}>
-                            <tr className="hover:bg-white/5 transition-colors">
+                            <tr className="hover:bg-slate-50 transition-colors">
                               <td className="py-4 px-3 text-center">
                                 <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full font-bold font-mono text-[10px] ${
-                                  rank === 1 ? 'bg-amber-400 text-gray-950' : rank === 2 ? 'bg-gray-300 text-gray-950' : rank === 3 ? 'bg-amber-800 text-white' : 'bg-[#0B0F17] text-gray-400'
+                                  rank === 1 ? 'bg-amber-400 text-gray-950' : rank === 2 ? 'bg-slate-200 text-slate-700' : rank === 3 ? 'bg-amber-800 text-white' : 'bg-slate-100 text-slate-500'
                                 }`}>
                                   #{rank}
                                 </span>
                               </td>
                               <td className="py-4 px-3">
-                                <div className="font-bold text-white text-xs">{team.name}</div>
-                                <div className="text-[9px] text-gray-400 italic mt-0.5">"{team.tagline}"</div>
+                                <div className="font-bold text-slate-900 text-xs font-heading">{team.name}</div>
+                                <div className="text-[9px] text-slate-500 italic mt-0.5">"{team.tagline}"</div>
                               </td>
                               <td className="py-4 px-3">
-                                <span className="bg-[#6366F1]/10 text-[#818cf8] border border-[#6366F1]/20 text-[9px] font-bold px-2 py-0.5 rounded">
+                                <span className="bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20 text-[9px] font-bold px-2 py-0.5 rounded">
                                   {team.track}
                                 </span>
                               </td>
-                              <td className="py-4 px-3 text-center font-semibold text-gray-300">
+                              <td className="py-4 px-3 text-center font-semibold text-slate-600">
                                 {team.count} Evaluator{team.count !== 1 ? 's' : ''}
                               </td>
                               <td className="py-4 px-3 text-center">
-                                <span className="text-sm font-black text-emerald-400 font-mono">
+                                <span className="text-sm font-black text-emerald-600 font-mono">
                                   {team.average.toFixed(2)}
                                 </span>
                               </td>
                               <td className="py-4 px-3 text-right">
                                 <button
                                   onClick={() => setExpandedTeamId(isExpanded ? null : team.id)}
-                                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-[9px] font-bold text-gray-200"
+                                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-[9px] font-bold text-slate-600"
                                 >
                                   {isExpanded ? 'Hide' : 'Rubric'}
                                 </button>
@@ -958,30 +958,30 @@ export default function SmartEventDashboard() {
                             {/* Collapse details */}
                             {isExpanded && (
                               <tr>
-                                <td colSpan={6} className="bg-slate-950 p-4 border-b border-indigo-500/10">
+                                <td colSpan={6} className="bg-slate-50 p-4 border-b border-slate-100">
                                   <div className="space-y-4">
                                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                      <div className="p-3 bg-slate-900 border border-white/5 rounded-xl">
-                                        <span className="text-gray-500 block text-[9px] uppercase tracking-wider font-semibold">Innovation</span>
-                                        <span className="text-xs font-bold text-indigo-400 font-mono block mt-1">
+                                      <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                        <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-semibold">Innovation</span>
+                                        <span className="text-xs font-bold text-[#7C3AED] font-mono block mt-1">
                                           {team.breakdown.innovation} / 10
                                         </span>
                                       </div>
-                                      <div className="p-3 bg-slate-900 border border-white/5 rounded-xl">
-                                        <span className="text-gray-500 block text-[9px] uppercase tracking-wider font-semibold">Execution</span>
-                                        <span className="text-xs font-bold text-emerald-400 font-mono block mt-1">
+                                      <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                        <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-semibold">Execution</span>
+                                        <span className="text-xs font-bold text-[#3B82F6] font-mono block mt-1">
                                           {team.breakdown.execution} / 10
                                         </span>
                                       </div>
-                                      <div className="p-3 bg-slate-900 border border-white/5 rounded-xl">
-                                        <span className="text-gray-500 block text-[9px] uppercase tracking-wider font-semibold">Design</span>
-                                        <span className="text-xs font-bold text-purple-400 font-mono block mt-1">
+                                      <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                        <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-semibold">Design</span>
+                                        <span className="text-xs font-bold text-purple-600 font-mono block mt-1">
                                           {team.breakdown.design} / 10
                                         </span>
                                       </div>
-                                      <div className="p-3 bg-slate-900 border border-white/5 rounded-xl">
-                                        <span className="text-gray-500 block text-[9px] uppercase tracking-wider font-semibold">Presentation</span>
-                                        <span className="text-xs font-bold text-amber-400 font-mono block mt-1">
+                                      <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
+                                        <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-semibold">Presentation</span>
+                                        <span className="text-xs font-bold text-amber-500 font-mono block mt-1">
                                           {team.breakdown.pitch} / 10
                                         </span>
                                       </div>
@@ -990,10 +990,10 @@ export default function SmartEventDashboard() {
                                     {/* Written judge comments */}
                                     {tScores.length > 0 && (
                                       <div className="space-y-2">
-                                        <span className="text-[10px] font-bold text-gray-400 uppercase block tracking-wider">Remarks:</span>
+                                        <span className="text-[10px] font-bold text-slate-500 uppercase block tracking-wider font-heading">Remarks:</span>
                                         {tScores.map((s, idx) => (
-                                          <div key={idx} className="p-2.5 bg-slate-900 rounded border border-white/5 text-[10px] text-gray-300">
-                                            <strong className="text-[#818cf8]">{s.judgeId}:</strong> "{s.feedback || 'No written remarks.'}"
+                                          <div key={idx} className="p-2.5 bg-white rounded border border-slate-200 text-[10px] text-slate-600 shadow-sm">
+                                            <strong className="text-[#7C3AED]">{s.judgeId}:</strong> "{s.feedback || 'No written remarks.'}"
                                           </div>
                                         ))}
                                       </div>
@@ -1018,30 +1018,30 @@ export default function SmartEventDashboard() {
               
               {/* Broadcast push studio */}
               {role === 'organizer' && (
-                <div className="bg-[#121824] border border-white/5 rounded-2xl p-6 space-y-4">
-                  <h3 className="text-sm font-bold text-[#818cf8] flex items-center gap-2">
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm">
+                  <h3 className="text-sm font-bold text-[#7C3AED] flex items-center gap-2 font-heading">
                     <Megaphone className="w-4 h-4" /> Broadcast Studio (Emergency Push)
                   </h3>
                   
                   <form onSubmit={handleBroadcastSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Announcement Title</label>
+                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Announcement Title</label>
                         <input
                           type="text"
                           placeholder="e.g. Closing Ceremony Timing"
                           value={orgTitle}
                           onChange={(e) => setOrgTitle(e.target.value)}
-                          className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                          className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                           required
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Category</label>
+                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Category</label>
                         <select
                           value={orgCategory}
                           onChange={(e) => setOrgCategory(e.target.value)}
-                          className="w-full bg-[#0B0F17] border border-white/5 rounded-xl py-2 px-3 text-xs text-white outline-none focus:border-[#6366F1] cursor-pointer"
+                          className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl py-2 px-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white cursor-pointer"
                         >
                           <option value="General">General</option>
                           <option value="Schedule">Schedule</option>
@@ -1050,17 +1050,17 @@ export default function SmartEventDashboard() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[9px] font-bold text-gray-400 block mb-1 uppercase tracking-wider">Announcement Body</label>
+                      <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Announcement Body</label>
                       <textarea
                         placeholder="Type alert details..."
                         value={orgText}
                         onChange={(e) => setOrgText(e.target.value)}
-                        className="w-full bg-[#0B0F17] border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#6366F1]"
+                        className="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl p-3 text-xs text-slate-800 outline-none focus:border-[#7C3AED] focus:bg-white"
                         rows={3}
                         required
                       />
                     </div>
-                    <button type="submit" className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs">
+                    <button type="submit" className="w-full py-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs shadow-sm">
                       Broadcast Alert
                     </button>
                   </form>
@@ -1068,19 +1068,19 @@ export default function SmartEventDashboard() {
               )}
 
               {/* Feed */}
-              <div className="bg-[#121824] border border-white/5 rounded-2xl p-6">
-                <h3 className="text-sm font-bold text-white mb-4">Urgent Broadcast Stream</h3>
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
+                <h3 className="text-sm font-bold text-slate-900 mb-4 font-heading">Urgent Broadcast Stream</h3>
                 <div className="space-y-3">
                   {broadcasts.map(b => (
-                    <div key={b.id} className="p-4 bg-[#0B0F17] border border-white/5 rounded-xl space-y-1">
+                    <div key={b.id} className="p-4 bg-[#F8FAFC] border border-slate-200 rounded-xl space-y-1 shadow-sm">
                       <div className="flex justify-between items-center text-[10px]">
-                        <span className="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                        <span className="bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
                           {b.category}
                         </span>
-                        <span className="text-gray-500 font-mono">{b.time}</span>
+                        <span className="text-slate-400 font-mono">{b.time}</span>
                       </div>
-                      <h4 className="text-xs font-bold text-white mt-1.5">{b.title}</h4>
-                      <p className="text-[10px] text-gray-400 leading-relaxed">{b.text}</p>
+                      <h4 className="text-xs font-bold text-slate-900 mt-1.5 font-heading">{b.title}</h4>
+                      <p className="text-[10px] text-slate-500 leading-relaxed">{b.text}</p>
                     </div>
                   ))}
                 </div>
@@ -1095,59 +1095,59 @@ export default function SmartEventDashboard() {
         <div className="space-y-6">
 
           {/* Metric telemetry dials */}
-          <div className="bg-[#121824] border border-white/5 rounded-2xl p-5 space-y-4">
-            <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Command Telemetry Feed</h3>
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-4 shadow-sm">
+            <h3 className="text-xs font-bold text-[#7C3AED] uppercase tracking-wider font-heading">Telemetry Overview</h3>
             
             <div className="space-y-3.5">
               {/* Checkin dial */}
-              <div className="bg-[#0B0F17] p-3 rounded-xl border border-white/5 flex items-center justify-between">
+              <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 flex items-center justify-between shadow-inner">
                 <div>
-                  <span className="text-[9px] text-gray-500 uppercase tracking-wider block">Checked-in Node Ratio</span>
-                  <strong className="text-base text-white font-mono mt-1 block">{totalCheckedin} / {totalRegistered}</strong>
+                  <span className="text-[9px] text-slate-400 uppercase tracking-wider block font-semibold">Checked-in Node Ratio</span>
+                  <strong className="text-base text-slate-800 font-mono mt-1 block">{totalCheckedin} / {totalRegistered}</strong>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-emerald-400 font-mono font-bold">
+                  <span className="text-xs text-emerald-600 font-mono font-bold">
                     {Math.round((totalCheckedin / (totalRegistered || 1)) * 100)}% Verified
                   </span>
                 </div>
               </div>
 
               {/* Submissions count */}
-              <div className="bg-[#0B0F17] p-3 rounded-xl border border-white/5 flex items-center justify-between">
+              <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 flex items-center justify-between shadow-inner">
                 <div>
-                  <span className="text-[9px] text-gray-500 uppercase tracking-wider block">Active Commit Submissions</span>
-                  <strong className="text-base text-white font-mono mt-1 block">{submissionsCount} / {teams.length} Teams</strong>
+                  <span className="text-[9px] text-slate-400 uppercase tracking-wider block font-semibold">Active Commit Submissions</span>
+                  <strong className="text-base text-slate-800 font-mono mt-1 block">{submissionsCount} / {teams.length} Teams</strong>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-purple-400 font-mono font-bold">
+                  <span className="text-xs text-[#3B82F6] font-mono font-bold">
                     {Math.round((submissionsCount / (teams.length || 1)) * 100)}% Committed
                   </span>
                 </div>
               </div>
 
               {/* Evaluation progress */}
-              <div className="bg-[#0B0F17] p-3 rounded-xl border border-white/5 flex items-center justify-between">
+              <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 flex items-center justify-between shadow-inner">
                 <div>
-                  <span className="text-[9px] text-gray-500 uppercase tracking-wider block">Evaluation Rubric Count</span>
-                  <strong className="text-base text-white font-mono mt-1 block">{totalEvaluationCount} Logs</strong>
+                  <span className="text-[9px] text-slate-400 uppercase tracking-wider block font-semibold">Evaluation Rubric Count</span>
+                  <strong className="text-base text-slate-800 font-mono mt-1 block">{totalEvaluationCount} Logs</strong>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Emergency Alert stream box */}
-          <div className="bg-[#121824] border border-white/5 rounded-2xl p-5 space-y-4">
-            <h3 className="text-xs font-bold text-purple-400 uppercase tracking-wider">Live Broadcast Alerts</h3>
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-5 space-y-4 shadow-sm">
+            <h3 className="text-xs font-bold text-[#3B82F6] uppercase tracking-wider font-heading">Live Broadcast Alerts</h3>
             
             <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
               {broadcasts.map(b => (
-                <div key={b.id} className="p-3 bg-[#0B0F17] border border-white/5 rounded-xl space-y-1">
+                <div key={b.id} className="p-3 bg-[#F8FAFC] border border-slate-200 rounded-xl space-y-1 shadow-sm">
                   <div className="flex justify-between items-center text-[8px] font-mono">
-                    <span className="text-purple-400 uppercase font-bold">[{b.category}]</span>
-                    <span className="text-gray-500">{b.time}</span>
+                    <span className="text-[#3B82F6] uppercase font-bold">[{b.category}]</span>
+                    <span className="text-slate-400">{b.time}</span>
                   </div>
-                  <h4 className="text-[11px] font-bold text-white leading-tight">{b.title}</h4>
-                  <p className="text-[10px] text-gray-400 leading-relaxed">{b.text}</p>
+                  <h4 className="text-[11px] font-bold text-slate-900 leading-tight font-heading">{b.title}</h4>
+                  <p className="text-[10px] text-slate-500 leading-relaxed">{b.text}</p>
                 </div>
               ))}
             </div>

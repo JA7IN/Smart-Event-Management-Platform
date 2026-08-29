@@ -7,11 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBg: "#0B0F17",
-        cardBg: "#121824",
+        lightBg: "#F8FAFC",
+        panelBg: "#FFFFFF",
+        primaryPurple: "#7C3AED",
+        secondaryBlue: "#3B82F6",
       },
       fontFamily: {
-        heading: ["Outfit", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
         body: ["Inter", "sans-serif"],
       }
     },
