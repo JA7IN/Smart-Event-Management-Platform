@@ -403,7 +403,9 @@ export default function SmartEventDashboard() {
           {role === 'participant' ? (
             <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1.5 text-[11px]">
               <User className="w-3.5 h-3.5 text-[#7C3AED]" aria-hidden="true" />
+              <label htmlFor="active-part-select" className="sr-only">Select active participant profile</label>
               <select
+                id="active-part-select"
                 value={activePartId}
                 onChange={(e) => {
                   setActivePartId(e.target.value);
@@ -430,7 +432,9 @@ export default function SmartEventDashboard() {
           ) : role === 'judge' ? (
             <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1.5 text-[11px]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#3B82F6]" aria-hidden="true" />
+              <label htmlFor="active-judge-select" className="sr-only">Select active evaluator identity</label>
               <select
+                id="active-judge-select"
                 value={activeJudgeId}
                 onChange={(e) => setActiveJudgeId(e.target.value)}
                 aria-label="Select active evaluator identity"
@@ -682,8 +686,9 @@ export default function SmartEventDashboard() {
                   <form onSubmit={handleAssembleSquad} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Team Title</label>
+                        <label htmlFor="team-title-input" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Team Title</label>
                         <input
+                          id="team-title-input"
                           type="text"
                           placeholder="e.g. Brainiacs AI"
                           value={teamNameInput}
@@ -694,8 +699,9 @@ export default function SmartEventDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Track Track</label>
+                        <label htmlFor="team-track-select" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Track Track</label>
                         <select
+                          id="team-track-select"
                           value={teamTrackInput}
                           onChange={(e) => setTeamTrackInput(e.target.value)}
                           aria-label="Select submission track"
@@ -708,8 +714,9 @@ export default function SmartEventDashboard() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Tagline</label>
+                      <label htmlFor="team-tagline-input" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Tagline</label>
                       <input
+                        id="team-tagline-input"
                         type="text"
                         placeholder="e.g. Building carbon credits parsing maps"
                         value={teamTaglineInput}
@@ -745,8 +752,9 @@ export default function SmartEventDashboard() {
                       <form onSubmit={handleDeliverablesSubmit} className="space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">GitHub URL</label>
+                            <label htmlFor="deliverable-repo-input" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">GitHub URL</label>
                             <input
+                              id="deliverable-repo-input"
                               type="url"
                               placeholder="https://github.com/user/project"
                               value={repoInput}
@@ -757,8 +765,9 @@ export default function SmartEventDashboard() {
                             />
                           </div>
                           <div>
-                            <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Video Demo Link</label>
+                            <label htmlFor="deliverable-demo-input" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Video Demo Link</label>
                             <input
+                              id="deliverable-demo-input"
                               type="url"
                               placeholder="https://youtube.com/watch?v=pitch"
                               value={demoInput}
@@ -791,7 +800,9 @@ export default function SmartEventDashboard() {
                     </p>
 
                     <form onSubmit={handleGitValidatorCheck} className="flex gap-2">
+                      <label htmlFor="git-checker-input" className="sr-only">Repository URL for Compliance Check</label>
                       <input
+                        id="git-checker-input"
                         type="url"
                         placeholder="https://github.com/user/project"
                         value={repoCheckUrl}
@@ -839,7 +850,9 @@ export default function SmartEventDashboard() {
                       </h3>
                     </div>
                     <div className="bg-slate-100 border border-slate-200/60 rounded-xl px-2.5 py-1 text-[10px]">
-                      Target: <select 
+                      Target: <label htmlFor="judge-team-select" className="sr-only">Choose team project to evaluate</label>
+                      <select 
+                        id="judge-team-select"
                         value={judgeSelectedTeam} 
                         onChange={(e) => {
                           setJudgeSelectedTeam(e.target.value);
@@ -874,7 +887,9 @@ export default function SmartEventDashboard() {
                               <span className="font-bold text-slate-700">{crit.name}</span>
                               <span className="font-mono font-bold text-[#7C3AED]">{scoreVal} / 10</span>
                             </div>
+                            <label htmlFor={`slider-${crit.id}`} className="sr-only">{crit.name} Grade</label>
                             <input
+                              id={`slider-${crit.id}`}
                               type="range"
                               min="0"
                               max="10"
@@ -896,8 +911,9 @@ export default function SmartEventDashboard() {
                     </div>
 
                     <div>
-                      <label className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Qualitative Feedback</label>
+                      <label htmlFor="judge-feedback-textarea" className="text-[9px] font-bold text-slate-500 block mb-1 uppercase tracking-wider">Qualitative Feedback</label>
                       <textarea
+                        id="judge-feedback-textarea"
                         placeholder="Type construct remarks for final telemetry report..."
                         value={judgeFeedback}
                         onChange={(e) => setJudgeFeedback(e.target.value)}

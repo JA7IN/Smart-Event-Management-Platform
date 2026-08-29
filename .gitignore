@@ -29,3 +29,5 @@ out/
 # Temporary files
 scratch/
 tmp/
+
+.vercel
