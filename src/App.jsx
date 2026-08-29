@@ -27,6 +27,13 @@ import {
   Award
 } from 'lucide-react';
 
+const RUBRIC_CRITERIA = [
+  { id: 'innovation', name: 'Innovation' },
+  { id: 'execution', name: 'Execution' },
+  { id: 'design', name: 'Design & UI/UX' },
+  { id: 'pitch', name: 'Pitch & Presentation' }
+];
+
 export default function SmartEventDashboard() {
   const [role, setRole] = useState('organizer'); // participant | judge | organizer
   const [currentTab, setCurrentTab] = useState('checkin'); // checkin | team | submissions | leaderboard | broadcasts
@@ -292,6 +299,15 @@ export default function SmartEventDashboard() {
   const submissionsCount = teams.filter(t => t.submissionStatus === 'Submitted').length;
   const totalEvaluationCount = scores.length;
   const uncheckedList = participants.filter(p => !p.checkInStatus);
+
+  const calculatedWeightedScore = parseFloat(
+    (
+      ((judgeRubrics.innovation || 0) +
+       (judgeRubrics.execution || 0) +
+       (judgeRubrics.design || 0) +
+       (judgeRubrics.pitch || 0)) / 4
+    ).toFixed(2)
+  );
 
   return (
     <div className="min-h-screen bg-[#0B0F17] text-slate-200 font-sans p-4 md:p-6 select-none">
