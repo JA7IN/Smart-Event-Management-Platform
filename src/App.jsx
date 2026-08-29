@@ -5,26 +5,20 @@ import { EventProvider, useEventContext } from './context/EventContext';
 import { Navbar } from './components/Navbar';
 import { NotificationToast } from './components/NotificationToast';
 import { QRScannerModal } from './components/QRScannerModal';
-import { ParticipantView } from './views/ParticipantView';
+import { CheckinView } from './views/CheckinView';
 import { TeamFormationView } from './views/TeamFormationView';
-import { JudgeView } from './views/JudgeView';
-import { OrganizerView } from './views/OrganizerView';
+import { SubmissionsView } from './views/SubmissionsView';
 import { LeaderboardView } from './views/LeaderboardView';
-import { ResourcesView } from './components/ResourcesView';
-import { ArchitectureView } from './components/ArchitectureView';
 
 const MainContent = ({ onOpenScanner }) => {
   const { currentView } = useEventContext();
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
-      {currentView === 'participant' && <ParticipantView />}
+      {currentView === 'checkin' && <CheckinView />}
       {currentView === 'team' && <TeamFormationView />}
-      {currentView === 'judge' && <JudgeView />}
-      {currentView === 'organizer' && <OrganizerView onOpenScanner={onOpenScanner} />}
+      {currentView === 'submissions' && <SubmissionsView />}
       {currentView === 'leaderboard' && <LeaderboardView />}
-      {currentView === 'resources' && <ResourcesView />}
-      {currentView === 'architecture' && <ArchitectureView />}
     </main>
   );
 };

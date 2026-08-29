@@ -13,7 +13,7 @@ import {
 const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
-  const [currentView, setCurrentView] = useState('participant'); // participant | team | judge | organizer | leaderboard | architecture
+  const [currentView, setCurrentView] = useState('checkin'); // checkin | team | submissions | leaderboard
   const [activeParticipantId, setActiveParticipantId] = useState('PART-101');
   const [activeJudgeId, setActiveJudgeId] = useState('JUDGE-01');
 
@@ -252,7 +252,7 @@ export const useEventContext = () => {
   if (!context) {
     // Return safe initial fallbacks for Next SSR hydration phase
     return {
-      currentView: 'participant',
+      currentView: 'checkin',
       setCurrentView: () => {},
       activeParticipantId: 'PART-101',
       setActiveParticipantId: () => {},
